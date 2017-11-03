@@ -2,6 +2,7 @@
 
 require_relative '../../vendors/all'
 require 'base64'
+require 'ostruct'
 require 'openssl'
 require 'uri'
 
@@ -9,35 +10,46 @@ module TencentCos
   module V5
     class Authorization
       attr_accessor :secret_id, :secret_key, :duration_seconds, :force_sign_time
-      def init(options)
-        self.secret_id = options[:secret_id]
-        self.secret_key = options[:secret_key]
-        self.duration_seconds = options[:duration_seconds] || 60
+
+      def initialize(config = nil)
+        init(config)
         yield(self) if block_given?
       end
 
-      def sign(request)
+      def init(config)
+        return if config.nil?
+        config = OpenStruct.new(config) if config.is_a? Hash
+        self.secret_id = config.secret_id
+        self.secret_key = config.secret_key
+        # self.bucket_name = config.bucket_name
+        self.duration_seconds = config.duration_seconds || 3600
+      end
+
+      def sign(request_info)
+        request_info = OpenStruct.new(request_info) if request_info.is_a? Hash
+
         sign_time = self.sign_time
-        url = request.url
+        url = request_info.url
+        puts url
         path = path(url)
-        method_name = request.method_name
-        sorted_params = param_list(request.params)
-        sorted_headers = param_list(request.headers)
+        method_name = request_info.method_name.downcase
+        sorted_params = param_list(request_info.params)
+        sorted_headers = param_list(request_info.headers)
 
         puts "#{sign_time}, #{method_name}, #{path},#{sorted_headers}, #{sorted_params}"
 
         signature = signature(sign_time, method_name, path, sorted_headers, sorted_params)
 
         "q-sign-algorithm=sha1&q-ak=#{secret_id}&q-sign-time=#{sign_time}&q-key-time=#{sign_time}\
-&q-header-list=#{cleand_dict(request.headers).keys.join(';')}\
-&q-url-param-list=#{cleand_dict(request.params).keys.join(';')}\
+&q-header-list=#{cleand_dict(request_info.headers).keys.join(';')}\
+&q-url-param-list=#{cleand_dict(request_info.params).keys.join(';')}\
 &q-signature=#{signature}"
       end
 
       def sign_time(begin_time = nil, end_time = nil)
         return force_sign_time unless force_sign_time.nil?
         begin_time ||= Time.now
-        end_time ||= begin_time + _duration_seconds
+        end_time ||= begin_time + duration_seconds
         "#{begin_time.to_i};#{end_time.to_i}"
       end
 
@@ -87,6 +99,7 @@ module TencentCos
       # @param [URI::HTTP, URI::HTTPS] url
       # @return [String]
       def path(url)
+        url = URI.parse(url) if url.is_a? String
         if url.path == ''
           '/'
         else

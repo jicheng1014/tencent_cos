@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://service.cos.myqcloud.com/
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin16.5.0 x86_64) ruby/2.3.1p112
+      Authorization:
+      - q-sign-algorithm=sha1&q-ak=AKIDoYOIMWduEQgnnERYclnxBcQ3ZJ58OKeO&q-sign-time=1509429339;1509429399&q-key-time=1509429339;1509429399&q-header-list=&q-url-param-list=&q-signature=61b4fbc789053687ec172b64f40fc52e2abed8c8
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - service.cos.myqcloud.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '335'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 31 Oct 2017 05:55:40 GMT
+      Server:
+      - tencent-cos
+      X-Cos-Request-Id:
+      - NTlmODEwNWJfMmFhYzM1MGFfZDBjMV85MjM1ZA==
+    body:
+      encoding: UTF-8
+      string: "<ListAllMyBucketsResult>\n\t<Owner>\n\t\t<ID>qcs::cam::uin/100001643979:uin/100001643979</ID>\n\t\t<DisplayName>100001643979</DisplayName>\n\t</Owner>\n\t<Buckets>\n\t\t<Bucket>\n\t\t\t<Name>firtest-1254468716</Name>\n\t\t\t<Location>ap-guangzhou</Location>\n\t\t\t<CreateDate>2017-10-30T02:05:01Z</CreateDate>\n\t\t</Bucket>\n\t</Buckets>\n</ListAllMyBucketsResult>\n\n"
+    http_version: 
+  recorded_at: Tue, 31 Oct 2017 05:55:40 GMT
+recorded_with: VCR 3.0.3
