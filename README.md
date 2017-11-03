@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'tencent_cos'
+gem 'tencent_cos', git: "https://github.com/jicheng1014/tencent_cos.git"
 ```
 
 And then execute:
@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+腾讯v5 版本的授权 
 
 ## Development
 
