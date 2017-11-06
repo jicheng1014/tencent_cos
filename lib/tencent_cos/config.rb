@@ -19,8 +19,10 @@ module TencentCos
       self.request_retry ||= 3
       self.timeout ||= 3
     end
-
-    def host
+    
+    def host(bucket_name = nil, region = nil)
+      bucket_name = self.bucket_name if bucket_name.nil?
+      region = self.region if region.nil?
       "http://#{bucket_name}-#{app_id}.cos.#{region}.myqcloud.com"
     end
   end

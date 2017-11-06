@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "vcr", "> 3.0"
   spec.add_development_dependency "webmock"
+  spec.add_development_dependency "timecop"
   
   spec.add_dependency "rest-client", "> 2.0"
   spec.add_dependency "nokogiri", "> 1.4"

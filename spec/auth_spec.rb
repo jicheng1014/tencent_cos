@@ -12,6 +12,7 @@ module TencentCos
           model = Authorization.new
           model.secret_key = "BQYIM75p8x0iWVFSIgqEKwFprpRSVHlz" # 官方demo 给的sk 和ak
           model.secret_id = "AKIDQjz3ltompVjBni5LitkWHFlFpwkn9U5q"
+          model.force_sign_time = "1417773892;1417853898"
 
           headers = {
             "Host" => "bucket1-1254000000.cos.ap-beijing.myqcloud.com",

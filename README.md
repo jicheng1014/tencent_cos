@@ -16,10 +16,6 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install tencent_cos
-
 ## Usage
 
 腾讯v5 版本的授权 

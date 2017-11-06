@@ -18,7 +18,7 @@ module TencentCos
     end
 
     def do_request(uri, request_method, params, headers = {}, options = {})
-      url = standard_url(uri)
+      url = standard_url(uri, options)
       auth_str = auth_helper.sign(url: url, method_name: request_method, params: params, headers: headers)
 
       headers.merge!(:Authorization => auth_str ) if options[:auth]
@@ -33,10 +33,10 @@ module TencentCos
     
     private 
 
-    def standard_url(uri)
+    def standard_url(uri,options = {})
       return uri if uri.start_with?("http")
       uri = "/#{uri}" unless uri.start_with?("/")
-      "#{config.host}#{uri}" 
+      "#{config.host(options[:bucket_name], options[:region])}#{uri}"
     end
     
     def do_retry 
