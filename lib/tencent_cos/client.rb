@@ -11,6 +11,7 @@ module TencentCos
     include V5::Service
     include V5::Object
     attr_accessor :config, :auth_helper
+    
     def initialize(options = nil)
       self.config = Config.new(options)
       self.auth_helper = V5::Authorization.new(config)
