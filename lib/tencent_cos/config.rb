@@ -23,7 +23,7 @@ module TencentCos
     def host(bucket_name = nil, region = nil)
       bucket_name = self.bucket_name if bucket_name.nil?
       region = self.region if region.nil?
-      "http://#{bucket_name}-#{app_id}.cos.#{region}.myqcloud.com"
+      "https://#{bucket_name}-#{app_id}.cos.#{region}.myqcloud.com"
     end
   end
 end

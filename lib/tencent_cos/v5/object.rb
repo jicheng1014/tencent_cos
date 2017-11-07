@@ -22,9 +22,9 @@ module TencentCos
      
       private
 
-      def timespan_download_url_auth(file_path, expired_key, expired_second)
+      def timespan_download_url_auth(file_path, expired_key, expired_second = nil)
         file_path = "/#{file_path}" unless file_path.start_with?('/')
-        expired_second ||= 20 * 60
+        expired_second ||= 30 * 60
         # sign = MD5(KEY+ path + t)
         # http://www.test.com/ folder /vodfile.mp4?sign=abc123dsaadsasdads&t=4d024e80
         #sign=abc123dsaadsasdads&t=4d024e80

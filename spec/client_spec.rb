@@ -33,14 +33,11 @@ module TencentCos
       
       it 'could build timspan download url' do
         client = Client.new 
-        Timecop.freeze(Time.at(1509948410)) do
-          url = client.download_url("https://pro-app-tx.fir.im/", 'test.apk', expired_key: "whosyourdaddy")
-          puts url
-          expect(url.include?("sign=")).to eq true
+        Timecop.freeze(Time.at(1509993031 - 30 * 60 )) do 
+          url = client.download_url("http://pro-app-tc.fir.im/", '123.apk', expired_key: "tencent_given_key")
+          expect(url).to eq "http://pro-app-tc.fir.im/123.apk?sign=ce0b276d23d18bf9ca0baa51b0d9bbaf&t=5a00aa47"
         end
-
       end
-
     end
   end
 end
