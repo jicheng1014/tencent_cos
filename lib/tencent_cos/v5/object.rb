@@ -27,12 +27,12 @@ module TencentCos
 
       def delete_object(options = {})
         auth = upload_token(options[:file_key]) if options[:file_key]
-        url = ""
+        url = "#{self.config.host(options[:bucket_name],options[:region])}/#{options[:file_key]}"
         do_request(url, "delete", {}, { Authorization:auth }, { bucket_name: options[:bucket_name], region: options[:region] })
       end
 
       def find_object(options = {})
-        url = ""
+        url = "#{self.config.host(options[:bucket_name],options[:region])}/#{options[:file_key]}"
         auth = upload_token(options[:file_key]) if options[:file_key];
         do_request(url, "head", {}, { Authorization:auth }, { bucket_name: options[:bucket_name], region: options[:region] })
       end
