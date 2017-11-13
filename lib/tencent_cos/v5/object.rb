@@ -32,8 +32,12 @@ module TencentCos
       end
 
       def find_object(options = {})
+        puts "======================" * 10
+        puts options
         url = "#{self.config.host(options[:bucket_name],options[:region])}/#{options[:file_key]}"
         auth = upload_token(options[:file_key]) if options[:file_key];
+        puts url
+        puts auth
         do_request(url, "head", {}, { Authorization:auth }, { bucket_name: options[:bucket_name], region: options[:region] })
       end
      
