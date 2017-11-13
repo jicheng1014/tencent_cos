@@ -55,7 +55,7 @@ module TencentCos
 
     def request(method,url, params, headers, options = {})
       url = "http://#{url}" unless url.start_with? "http"
-      if %w(get delete).include? method
+      if %w(get delete head).include? method
         if url.include?("?")
           url = "#{url}&#{params.to_query}"
         else

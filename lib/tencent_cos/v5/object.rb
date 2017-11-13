@@ -23,8 +23,18 @@ module TencentCos
           return "#{http_base}#{file_path}?#{uri_info[:answer]}"
         end
         "#{http_base}#{file_path}"
+      end
 
+      def delete_object(options = {})
+        auth = upload_token(options[:file_key]) if options[:file_key]
+        url = ""
+        do_request(url, "delete", {}, { Authorization:auth }, { bucket_name: options[:bucket_name], region: options[:region] })
+      end
 
+      def find_object(options = {})
+        url = ""
+        auth = upload_token(options[:file_key]) if options[:file_key];
+        do_request(url, "head", {}, { Authorization:auth }, { bucket_name: options[:bucket_name], region: options[:region] })
       end
      
       private
