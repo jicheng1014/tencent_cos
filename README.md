@@ -19,6 +19,7 @@ And then execute:
 ## Usage
 
 ###Init client
+
 ```ruby
 client = TencentCos::Client.new(
         secret_id: "your secret_id",
@@ -32,17 +33,21 @@ client = TencentCos::Client.new(
 ```
 
 ###get auth
+
 ```ruby
 auth = client.upload_token(params[:key])
 ```
 
 ###get host
+
 ```ruby
 host = client.config.host
 ```
 
 ###delete object
+
 // bucket&region if empty, value is default config
+
 ```ruby
 client.delete_object({
         key: "xxxx",
@@ -53,6 +58,7 @@ client.delete_object({
 
 
 ###file exists? 
+
 ```ruby
 client.key_exists({key: "xxxx",
                    bucket: "xxxx",
