@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://proapp-1254468716.cos.ap-guangzhou.myqcloud.com/4c33e8e91cde2680dd0cc549541d0be785a9beac.apk
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin16.5.0 x86_64) ruby/2.3.1p112
+      Authorization:
+      - q-sign-algorithm=sha1&q-ak=AKIDoYOIMWduEQgnnERYclnxBcQ3ZJ58OKeO&q-sign-time=1510558617;1510562217&q-key-time=1510558617;1510562217&q-header-list=&q-url-param-list=&q-signature=e81685a526111ff79c2235cdd9584cee7d4a597f
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - proapp-1254468716.cos.ap-guangzhou.myqcloud.com
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 13 Nov 2017 07:36:57 GMT
+      Server:
+      - tencent-cos
+      X-Cos-Request-Id:
+      - NWEwOTRiOTlfY2JhMzNiMGFfMWYzOF8xNzA5NmM=
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Mon, 13 Nov 2017 07:36:58 GMT
+recorded_with: VCR 3.0.3
