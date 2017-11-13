@@ -27,12 +27,14 @@ module TencentCos
 
       def delete_object(options = {})
         url = "#{self.config.host(options[:bucket_name],options[:region])}/#{options[:file_key]}"
-        do_request(url, "delete", {}, {}, auth: true)
+        response_code = do_request(url, "delete", {}, {}, auth: true)
+        return true if response_code == 204
       end
 
       def find_object(options = {})
         url = "#{self.config.host(options[:bucket_name],options[:region])}/#{options[:file_key]}"
-        do_request(url, "head", {}, {},auth: true)
+        response_code = do_request(url, "head", {}, {},auth: true)
+        return true if response_code == 200
       end
      
       private

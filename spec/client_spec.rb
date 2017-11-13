@@ -39,11 +39,15 @@ module TencentCos
         end
       end
 
-      it 'could head object' do
-        client = Client.new
-        byebug
-        client.find_object({file_key: "000ff13e2517009c244b16c6544f44a178032141.apk",bucket_name: "proapp", region:"guangzhou"})
-      end
+      # it 'could head object' do
+      #   client = Client.new
+      #   client.find_object({file_key: "00dc77316f986dbed4c56cdf72c536c89acc1fd7.apk",bucket_name: "proapp", region:"guangzhou"})
+      # end
+      #
+      # it 'could delete object' do
+      #   client = Client.new
+      #   a = client.delete_object({file_key: "00dc77316f986dbed4c56cdf72c536c89acc1fd7.apk",bucket_name: "proapp", region:"guangzhou"})
+      # end
     end
   end
 end

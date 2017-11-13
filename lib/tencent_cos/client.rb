@@ -59,10 +59,8 @@ module TencentCos
       url = "http://#{url}" unless url.start_with? "http"
       if %w(get delete head).include? method
         if url.include?("?")
-          puts "3333333333333333333" * 10
           url = "#{url}&#{params.to_query}"
         else
-          puts "44444444444444444" * 10
           url = "#{url}?#{params.to_query}"
         end
         params = {}
@@ -76,8 +74,13 @@ module TencentCos
           :payload      => params,
           :timeout      => config.timeout}.merge(options[:request_config] || {})
         )
-        Nokogiri::XML(response.body) do |config|
-          config.strict.noblanks
+        # return 200 if response.body == ""
+        begin
+          Nokogiri::XML(response.body) { |config|
+            config.strict.noblanks
+          }
+        rescue => e
+          return response.code
         end
       end
     end
