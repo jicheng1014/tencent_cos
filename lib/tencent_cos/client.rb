@@ -19,13 +19,7 @@ module TencentCos
     end
 
     def do_request(uri, request_method, params, headers = {}, options = {})
-      puts "11111111111111111" * 10
-      puts uri
-      puts request_method
-      puts params
-      puts "headers= #{headers}"
       url = standard_url(uri, options)
-      puts url
       auth_str = auth_helper.sign(url: url, method_name: request_method, params: params, headers: headers)
 
       headers.merge!(:Authorization => auth_str ) if options[:auth]
@@ -41,7 +35,6 @@ module TencentCos
     private 
 
     def standard_url(uri,options = {})
-      puts "222222222222222" * 10
       puts uri
       puts options
       return uri if uri.start_with?("http")

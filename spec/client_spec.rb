@@ -38,6 +38,12 @@ module TencentCos
           expect(url).to eq "http://pro-app-tc.fir.im/123.apk?sign=ce0b276d23d18bf9ca0baa51b0d9bbaf&t=5a00aa47"
         end
       end
+
+      it 'could head object' do
+        client = Client.new
+        byebug
+        client.find_object({file_key: "000ff13e2517009c244b16c6544f44a178032141.apk",bucket_name: "proapp", region:"guangzhou"})
+      end
     end
   end
 end
