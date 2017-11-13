@@ -35,6 +35,8 @@ module TencentCos
     private 
 
     def standard_url(uri,options = {})
+      puts uri
+      puts options
       return uri if uri.start_with?("http")
       uri = "/#{uri}" unless uri.start_with?("/")
       "#{config.host(options[:bucket_name], options[:region])}#{uri}"
@@ -55,7 +57,7 @@ module TencentCos
 
     def request(method,url, params, headers, options = {})
       url = "http://#{url}" unless url.start_with? "http"
-      if %w(get delete).include? method
+      if %w(get delete head).include? method
         if url.include?("?")
           url = "#{url}&#{params.to_query}"
         else
@@ -72,8 +74,13 @@ module TencentCos
           :payload      => params,
           :timeout      => config.timeout}.merge(options[:request_config] || {})
         )
-        Nokogiri::XML(response.body) do |config|
-          config.strict.noblanks
+        # return 200 if response.body == ""
+        begin
+          Nokogiri::XML(response.body) { |config|
+            config.strict.noblanks
+          }
+        rescue => e
+          return response.code
         end
       end
     end

@@ -7,6 +7,13 @@ module TencentCos
         auth(file_name, "put", {}, custom_headers)
       end
       
+      def upload_file(path_key, file ,bucket, region)
+        url = "#{self.config.host(bucket,region)}/#{path_key}"
+        custom_headers = {"Authorization" => upload_token(path_key)}
+        file.read
+        
+      end
+      
       # options 存在以下字段
       # expired_key 过期的expired_key 如果有这个值  就认为是私有的  否则直接返回
       # 
@@ -16,8 +23,18 @@ module TencentCos
           return "#{http_base}#{file_path}?#{uri_info[:answer]}"
         end
         "#{http_base}#{file_path}"
+      end
 
+      def delete_object(options = {})
+        url = "#{self.config.host(options[:bucket_name],options[:region])}/#{options[:file_key]}"
+        response_code = do_request(url, "delete", {}, {}, auth: true)
+        return true if response_code == 204
+      end
 
+      def find_object(options = {})
+        url = "#{self.config.host(options[:bucket_name],options[:region])}/#{options[:file_key]}"
+        response_code = do_request(url, "head", {}, {},auth: true)
+        return true if response_code == 200
       end
      
       private

@@ -38,6 +38,16 @@ module TencentCos
           expect(url).to eq "http://pro-app-tc.fir.im/123.apk?sign=ce0b276d23d18bf9ca0baa51b0d9bbaf&t=5a00aa47"
         end
       end
+
+      # it 'could head object' do
+      #   client = Client.new
+      #   client.find_object({file_key: "00dc77316f986dbed4c56cdf72c536c89acc1fd7.apk",bucket_name: "proapp", region:"guangzhou"})
+      # end
+      #
+      # it 'could delete object' do
+      #   client = Client.new
+      #   a = client.delete_object({file_key: "00dc77316f986dbed4c56cdf72c536c89acc1fd7.apk",bucket_name: "proapp", region:"guangzhou"})
+      # end
     end
   end
 end
