@@ -33,7 +33,7 @@ client = TencentCos::Client.new(
 
 ###get auth
 ```ruby
-auth = client.upload_token(params[:file_key])
+auth = client.upload_token(params[:key])
 ```
 
 ###get host
@@ -42,10 +42,22 @@ host = client.config.host
 ```
 
 ###delete object
+// bucket&region if empty, value is default config
+```ruby
 client.delete_object({
+        key: "xxxx",
         bucket: "xxxx",
-        file_key: "xxxx",
-        region: "xxxx"
+        region: "xxx"
 })
+```
+
+
+###file exists? 
+```ruby
+client.key_exists({key: "xxxx",
+                   bucket: "xxxx",
+                   region: "xxx"})
+```
+
 
 
