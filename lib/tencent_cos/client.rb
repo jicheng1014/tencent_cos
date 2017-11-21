@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative './config'
+require_relative './helpers/all'
 require_relative './auth/authorization'
 require_relative './v5/service'
 require_relative './v5/object'
@@ -24,6 +25,7 @@ module TencentCos
       auth_str = auth_helper.sign(url: url, method_name: request_method, params: params, headers: headers)
 
       headers[:Authorization] = auth_str if options[:auth]
+      params = options[:body] if options[:body]
 
       request request_method, url, params, headers
     end
@@ -36,9 +38,7 @@ module TencentCos
     private
 
     def standard_url(uri, options = {})
-      return uri if uri.start_with?("http")
-      uri = "/#{uri}" unless uri.start_with?("/")
-      "#{config.host(options[:bucket_name], options[:region])}#{uri}"
+      UrlHelper.standard_url(config, uri, options)
     end
 
     def do_retry

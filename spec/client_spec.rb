@@ -30,7 +30,7 @@ module TencentCos
           expect(client.key_exists?(key: "not_found")).to eq false
         end
       end
-      
+
       it 'could delete file object' do
         client = Client.new
         VCR.use_cassette("delete_object") do
@@ -38,7 +38,6 @@ module TencentCos
           expect(response.code).to eq 204
         end
       end
-
 
       it 'could list bucket correctly' do
         client = Client.new
@@ -61,6 +60,16 @@ module TencentCos
         Timecop.freeze(Time.at(1_509_993_031 - 30 * 60)) do
           url = client.download_url("http://pro-app-tc.fir.im/", '123.apk', expired_key: "tencent_given_key")
           expect(url).to eq "http://pro-app-tc.fir.im/123.apk?sign=ce0b276d23d18bf9ca0baa51b0d9bbaf&t=5a00aa47"
+        end
+      end
+
+      it 'could build timspan download url' do
+        client = Client.new
+        VCR.use_cassette("upload_file") do
+          Timecop.freeze(Time.at(1_511_260_415)) do
+            url = client.upload_file(key: "upload_text.txt", file_path: './spec/test_files/upload_text.txt')
+            client.fetch_meta(key: "upload_text.txt")
+          end
         end
       end
     end

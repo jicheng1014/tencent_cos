@@ -3,3 +3,4 @@
 :app_id: "aaa"
 :region: "xxxxxx"
 :bucket_name: "xxxxxx"
+:use_http: false
