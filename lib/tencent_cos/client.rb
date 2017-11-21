@@ -67,12 +67,12 @@ module TencentCos
 
       do_retry do
         response = RestClient::Request.execute({
-          method: method,
-          url: URI.encode(url),
-          headers: headers,
-          payload: params,
-          timeout: config.timeout
-        }.merge(options[:request_config] || {}))
+                                                   method: method,
+                                                   url: URI.encode(url),
+                                                   headers: headers,
+                                                   payload: params,
+                                                   timeout: config.timeout
+                                               }.merge(options[:request_config] || {}))
       end
     end
   end

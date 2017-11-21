@@ -8,6 +8,12 @@ module TencentCos
       def upload_token(file_name, custom_headers = {})
         auth(file_name, "put", {}, custom_headers)
       end
+      #
+      # def upload_file(path_key, file ,bucket, region)
+      #   url = "#{self.config.host(bucket,region)}/#{path_key}"
+      #   custom_headers = {"Authorization" => upload_token(path_key)}
+      #   file.read
+      # end
 
       def key_exists?(dict)
         fetch_meta(dict)
@@ -60,9 +66,9 @@ module TencentCos
         time_hex = time.to_s(16)
         sign = Digest::MD5.hexdigest "#{expired_key}#{file_path}#{time_hex}"
         {
-          sign: sign,
-          t: time_hex,
-          answer: "sign=#{sign}&t=#{time_hex}"
+            sign: sign,
+            t: time_hex,
+            answer: "sign=#{sign}&t=#{time_hex}"
         }
       end
     end
