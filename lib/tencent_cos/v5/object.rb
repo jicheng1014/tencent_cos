@@ -15,12 +15,21 @@ module TencentCos
       rescue RestClient::NotFound => _e
         false
       end
+      
+      def upload_file(dict)
+        file_path = dict[:file_path]
+        key = dict[:key]
+        url = "#{config.host}/#{key}"
+        file = File.read(file_path)
+        do_request(url, "put", {}, {}, auth: true, body: file)
+      end
 
       def delete_object(dict = {})
         raise "need key at least" if dict[:key].nil?
         uri = "#{config.host(dict[:bucket], dict[:region])}/#{dict[:key]}"
         do_request(uri, "delete", {}, {}, auth: true)
       end
+      
 
       def fetch_meta(dict = {})
         raise "need key at least" if dict[:key].nil?

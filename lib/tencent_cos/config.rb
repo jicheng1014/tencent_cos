@@ -3,7 +3,7 @@ require 'yaml'
 
 module TencentCos
   class Config
-    ATTRS = %i[secret_id secret_key app_id region duration_seconds bucket_name request_retry timeout].freeze
+    ATTRS = %i[secret_id secret_key app_id region duration_seconds bucket_name request_retry timeout use_http].freeze
     attr_accessor(*ATTRS)
 
     def initialize(options = nil?)
@@ -23,7 +23,12 @@ module TencentCos
     def host(bucket_name = nil, region = nil)
       bucket_name = self.bucket_name if bucket_name.nil?
       region = self.region if region.nil?
-      "https://#{bucket_name}-#{app_id}.cos.ap-#{region}.myqcloud.com"
+      # 为了解决美团证书的问题，新增的配置
+      if use_http
+        "http://#{bucket_name}-#{app_id}.cos.ap-#{region}.myqcloud.com"
+      else
+        "https://#{bucket_name}-#{app_id}.cos.ap-#{region}.myqcloud.com"
+      end
     end
   end
 end

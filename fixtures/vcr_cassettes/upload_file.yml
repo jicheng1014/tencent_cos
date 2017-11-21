@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://proapp-1254468716.cos.ap-guangzhou.myqcloud.com/upload_text.txt
+    body:
+      encoding: UTF-8
+      string: this file would be uploaded by tencent_cos
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin16.5.0 x86_64) ruby/2.3.1p112
+      Authorization:
+      - q-sign-algorithm=sha1&q-ak=AKIDoYOIMWduEQgnnERYclnxBcQ3ZJ58OKeO&q-sign-time=1511260415;1511264015&q-key-time=1511260415;1511264015&q-header-list=&q-url-param-list=&q-signature=154709e9a0c109f8d966bcd988aead931cd3cc67
+      Content-Length:
+      - '42'
+      Host:
+      - proapp-1254468716.cos.ap-guangzhou.myqcloud.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 21 Nov 2017 10:38:09 GMT
+      Etag:
+      - '"d314cb42f51b80ff3e467e75648e82f6"'
+      Server:
+      - tencent-cos
+      X-Cos-Request-Id:
+      - NWExNDAyMTFfMTliYjk0MGFfMjcxYmNfMzc5NzVl
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 21 Nov 2017 10:33:35 GMT
+- request:
+    method: head
+    uri: https://proapp-1254468716.cos.ap-guangzhou.myqcloud.com/upload_text.txt
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin16.5.0 x86_64) ruby/2.3.1p112
+      Authorization:
+      - q-sign-algorithm=sha1&q-ak=AKIDoYOIMWduEQgnnERYclnxBcQ3ZJ58OKeO&q-sign-time=1511260415;1511264015&q-key-time=1511260415;1511264015&q-header-list=&q-url-param-list=&q-signature=733dfebb0b6bf232488bc9275cd4384716b3d173
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - proapp-1254468716.cos.ap-guangzhou.myqcloud.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Content-Length:
+      - '42'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 21 Nov 2017 10:38:09 GMT
+      Etag:
+      - '"d314cb42f51b80ff3e467e75648e82f6"'
+      Last-Modified:
+      - Tue, 21 Nov 2017 10:38:09 GMT
+      Server:
+      - tencent-cos
+      X-Cos-Request-Id:
+      - NWExNDAyMTFfNGJiOTQwYV8yNGU1MF8zN2FmNzI=
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 21 Nov 2017 10:33:35 GMT
+recorded_with: VCR 3.0.3
