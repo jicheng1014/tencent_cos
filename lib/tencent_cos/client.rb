@@ -50,8 +50,8 @@ module TencentCos
           puts "shit happens, e = #{e.message}.. "
           exception = e
         end
-        raise exception
       end
+      raise exception
     end
 
     def request(method, url, params, headers, options = {})

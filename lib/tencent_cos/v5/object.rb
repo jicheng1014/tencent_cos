@@ -27,7 +27,8 @@ module TencentCos
         key = dict[:key]
         url = "#{config.host}/#{key}"
         file = File.read(file_path)
-        do_request(url, "put", {}, {}, auth: true, body: file)
+        custom_headers = dict[:custom_headers] || {}
+        do_request(url, "put", {}, custom_headers, auth: true, body: file)
       end
 
       def delete_object(dict = {})
