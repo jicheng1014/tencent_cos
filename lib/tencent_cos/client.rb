@@ -5,6 +5,7 @@ require_relative './helpers/all'
 require_relative './auth/authorization'
 require_relative './v5/service'
 require_relative './v5/object'
+require_relative './v5/bucket'
 require 'rest-client'
 require 'nokogiri'
 
@@ -55,24 +56,34 @@ module TencentCos
     end
 
     def request(method, url, params, headers, options = {})
-      url = "http://#{url}" unless url.start_with? "http"
+      url = "http://#{url}" unless url.start_with? 'http'
       if %w[get delete].include? method
-        url = if url.include?("?")
+        url = if url.include?('?')
                 "#{url}&#{params.to_query}"
               else
                 "#{url}?#{params.to_query}"
               end
         params = {}
       end
+      val = headers["Content-Type"]
 
       do_retry do
-        response = RestClient::Request.execute({
-                                                   method: method,
-                                                   url: URI.encode(url),
-                                                   headers: headers,
-                                                   payload: params,
-                                                   timeout: config.timeout
-                                               }.merge(options[:request_config] || {}))
+        request = RestClient::Request.new({
+          method: method,
+          url: URI.encode(url),
+          headers: headers,
+          payload: params,
+          timeout: config.timeout
+        }.merge(options[:request_config] || {}))
+
+        headers = request.instance_variable_get("@processed_headers")
+
+        if headers.keys.include?("Content-Type")
+          headers.delete("Content-Type")
+          headers.merge!({"Content-Type" => val})
+          request.instance_variable_set("@processed_headers", headers)
+        end
+        request.execute
       end
     end
   end

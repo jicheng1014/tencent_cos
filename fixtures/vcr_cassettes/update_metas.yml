@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://proapp-1254468716.cos.ap-guangzhou.myqcloud.com/upload_text.txt
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.3.0 x86_64) ruby/2.4.1p111
+      X-Cos-Metadata-Directive:
+      - Replaced
+      X-Cos-Copy-Source:
+      - proapp-1254468716.cos.ap-guangzhou.myqcloud.com/upload_text.txt
+      Authorization:
+      - q-sign-algorithm=sha1&q-ak=AKIDoYOIMWduEQgnnERYclnxBcQ3ZJ58OKeO&q-sign-time=1513158079;1513161679&q-key-time=1513158079;1513161679&q-header-list=content-type;x-cos-copy-source;x-cos-metadata-directive&q-url-param-list=&q-signature=563d9dfc78f2e1d5973c61db28b9714f0b9aa159
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/vnd.android.package-archive
+      Host:
+      - proapp-1254468716.cos.ap-guangzhou.myqcloud.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '133'
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 13 Dec 2017 09:42:15 GMT
+      Server:
+      - tencent-cos
+      X-Cos-Request-Id:
+      - NWEzMGY1ZjdfOTYyMjViNjRfMTU1OF81ODYzZA==
+    body:
+      encoding: UTF-8
+      string: '<CopyObjectResult><ETag>"d314cb42f51b80ff3e467e75648e82f6"</ETag><LastModified>2017-12-13T09:42:15</LastModified></CopyObjectResult>
+
+'
+    http_version: 
+  recorded_at: Wed, 13 Dec 2017 09:41:19 GMT
+- request:
+    method: head
+    uri: https://proapp-1254468716.cos.ap-guangzhou.myqcloud.com/upload_text.txt
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.3.0 x86_64) ruby/2.4.1p111
+      Authorization:
+      - q-sign-algorithm=sha1&q-ak=AKIDoYOIMWduEQgnnERYclnxBcQ3ZJ58OKeO&q-sign-time=1513158079;1513161679&q-key-time=1513158079;1513161679&q-header-list=&q-url-param-list=&q-signature=72ccaebc539eb0a1248e317ad3b11c4e9fbf3984
+      Content-Length:
+      - '0'
+      Host:
+      - proapp-1254468716.cos.ap-guangzhou.myqcloud.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/vnd.android.package-archive
+      Content-Length:
+      - '42'
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 13 Dec 2017 09:42:17 GMT
+      Etag:
+      - '"d314cb42f51b80ff3e467e75648e82f6"'
+      Last-Modified:
+      - Wed, 13 Dec 2017 09:42:15 GMT
+      Server:
+      - tencent-cos
+      X-Cos-Request-Id:
+      - NWEzMGY1ZjlfOTcyMjViNjRfNTgzOV81NmVlMA==
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 13 Dec 2017 09:41:19 GMT
+recorded_with: VCR 3.0.3

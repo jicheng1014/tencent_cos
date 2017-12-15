@@ -6,14 +6,8 @@ module TencentCos
   module V5
     module Object
       def upload_token(file_name, custom_headers = {})
-        auth(file_name, "put", {}, custom_headers)
+        auth(file_name, 'put', {}, custom_headers)
       end
-      #
-      # def upload_file(path_key, file ,bucket, region)
-      #   url = "#{self.config.host(bucket,region)}/#{path_key}"
-      #   custom_headers = {"Authorization" => upload_token(path_key)}
-      #   file.read
-      # end
 
       def key_exists?(dict)
         fetch_meta(dict)
@@ -21,26 +15,35 @@ module TencentCos
       rescue RestClient::NotFound => _e
         false
       end
-      
+
       def upload_file(dict)
         file_path = dict[:file_path]
         key = dict[:key]
         url = "#{config.host}/#{key}"
         file = File.read(file_path)
-        do_request(url, "put", {}, {}, auth: true, body: file)
+        do_request(url, 'put', {}, {}, auth: true, body: file)
       end
 
       def delete_object(dict = {})
-        raise "need key at least" if dict[:key].nil?
+        raise 'need key at least' if dict[:key].nil?
         uri = "#{config.host(dict[:bucket], dict[:region])}/#{dict[:key]}"
-        do_request(uri, "delete", {}, {}, auth: true)
+        do_request(uri, 'delete', {}, {}, auth: true)
       end
-      
+
+      def change_metas(dict)
+        key = dict[:key]
+        custom_metas = dict[:custom_metas] || {}
+        url = "#{config.host}/#{key}"
+        path = url.split('https://').last
+        headers = { 'x-cos-metadata-directive' => 'Replaced', 'x-cos-copy-source' => path }.merge(custom_metas)
+
+        do_request(url, 'put', {}, headers, auth: true)
+      end
 
       def fetch_meta(dict = {})
-        raise "need key at least" if dict[:key].nil?
+        raise 'need key at least' if dict[:key].nil?
         uri = "#{config.host(dict[:bucket], dict[:region])}/#{dict[:key]}"
-        do_request(uri, "head", {}, {}, auth: true)
+        do_request(uri, 'head', {}, {}, auth: true)
       end
 
       # options 存在以下字段
@@ -66,9 +69,9 @@ module TencentCos
         time_hex = time.to_s(16)
         sign = Digest::MD5.hexdigest "#{expired_key}#{file_path}#{time_hex}"
         {
-            sign: sign,
-            t: time_hex,
-            answer: "sign=#{sign}&t=#{time_hex}"
+          sign: sign,
+          t: time_hex,
+          answer: "sign=#{sign}&t=#{time_hex}"
         }
       end
     end
