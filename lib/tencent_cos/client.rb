@@ -12,6 +12,7 @@ require 'nokogiri'
 module TencentCos
   class Client
     include V5::Service
+    include V5::Bucket
     include V5::Object
     attr_accessor :config, :auth_helper
 
@@ -79,6 +80,7 @@ module TencentCos
         headers = request.instance_variable_get("@processed_headers")
 
         if headers.keys.include?("Content-Type")
+          
           headers.delete("Content-Type")
           headers.merge!({"Content-Type" => val})
           request.instance_variable_set("@processed_headers", headers)

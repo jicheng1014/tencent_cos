@@ -119,7 +119,7 @@ module TencentCos
         if value.nil?
           nil
         else
-          CGI.escape(value.encode('UTF-8')).gsub('+', '%20').gsub('%7E', '~')
+          CGI.escape(value.to_s.encode('UTF-8')).gsub('+', '%20').gsub('%7E', '~')
         end
       end
 

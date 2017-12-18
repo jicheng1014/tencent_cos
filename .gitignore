@@ -13,3 +13,4 @@
 tencent_cos.yml
 */*.yml
 .byebug
+.byebug_history

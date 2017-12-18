@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://proapp-1254468716.cos.ap-guangzhou.myqcloud.com/?max-keys=3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.3.0 x86_64) ruby/2.4.1p111
+      Authorization:
+      - q-sign-algorithm=sha1&q-ak=AKIDoYOIMWduEQgnnERYclnxBcQ3ZJ58OKeO&q-sign-time=1513329632;1513333232&q-key-time=1513329632;1513333232&q-header-list=&q-url-param-list=&q-signature=8ce24e7c217f9b554cbbe429b031bddf1a896b99
+      Content-Length:
+      - '0'
+      Host:
+      - proapp-1254468716.cos.ap-guangzhou.myqcloud.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '1303'
+      Connection:
+      - keep-alive
+      Date:
+      - Fri, 15 Dec 2017 09:20:51 GMT
+      Server:
+      - tencent-cos
+      X-Cos-Request-Id:
+      - NWEzMzkzZjNfYzdhMzNiMGFfMmJmNl9lNzE4NA==
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='utf-8' ?>\n<ListBucketResult>\n\t<Name>proapp-1254468716</Name>\n\t<Prefix/>\n\t<Marker/>\n\t<MaxKeys>3</MaxKeys>\n\t<IsTruncated>true</IsTruncated>\n\t<NextMarker>0000833add9f16df6fb9fc222fa24ec6439b2313.apk</NextMarker>\n\t<Contents>\n\t\t<Key>000037f6673e254ed2e0e7a8f31c59e17d92e46f.apk</Key>\n\t\t<LastModified>2017-11-21T06:46:24.000Z</LastModified>\n\t\t<ETag>&quot;075f4561f0a1d434de4df15401c620af&quot;</ETag>\n\t\t<Size>50981910</Size>\n\t\t<Owner>\n\t\t\t<ID>1254468716</ID>\n\t\t\t<DisplayName>1254468716</DisplayName>\n\t\t</Owner>\n\t\t<StorageClass>STANDARD</StorageClass>\n\t</Contents>\n\t<Contents>\n\t\t<Key>00003da08727a99283e84c04bba2fee51b34dc0a.apk</Key>\n\t\t<LastModified>2017-12-02T08:34:05.000Z</LastModified>\n\t\t<ETag>&quot;10447b483219c6891982a339c3b47f71&quot;</ETag>\n\t\t<Size>9609588</Size>\n\t\t<Owner>\n\t\t\t<ID>1254468716</ID>\n\t\t\t<DisplayName>1254468716</DisplayName>\n\t\t</Owner>\n\t\t<StorageClass>STANDARD</StorageClass>\n\t</Contents>\n\t<Contents>\n\t\t<Key>0000833add9f16df6fb9fc222fa24ec6439b2313.apk</Key>\n\t\t<LastModified>2017-11-22T14:27:07.000Z</LastModified>\n\t\t<ETag>&quot;d484f7c98b71197b716437d5029ee0f6&quot;</ETag>\n\t\t<Size>60281335</Size>\n\t\t<Owner>\n\t\t\t<ID>1254468716</ID>\n\t\t\t<DisplayName>1254468716</DisplayName>\n\t\t</Owner>\n\t\t<StorageClass>STANDARD</StorageClass>\n\t</Contents>\n</ListBucketResult>\n\n"
+    http_version: 
+  recorded_at: Fri, 15 Dec 2017 09:20:32 GMT
+recorded_with: VCR 3.0.3

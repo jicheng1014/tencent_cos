@@ -77,8 +77,8 @@ module TencentCos
       it 'could modify object metas' do
         begin
           client = Client.new
-          
-          Timecop.freeze(Time.at(1513158079)) do
+
+          Timecop.freeze(Time.at(1_513_158_079)) do
             VCR.use_cassette('update_metas') do
               client.change_metas(
                 key: 'upload_text.txt',
@@ -88,6 +88,26 @@ module TencentCos
             end
           end
         rescue StandardError => e
+        end
+      end
+
+      it 'could list objects' do
+        Timecop.freeze(Time.at(1_513_329_632)) do
+          VCR.use_cassette('list objects') do
+            client = Client.new
+            xml = client.show_objects(nil, 3)
+            byebug
+          end
+        end
+        client = Client.new
+
+        File.open('key.txt', 'wb') do |f|
+          x = client.all_objects do |called_info|
+            called_info.css('Key').map(&:text).each do |key|
+              f.write("#{key}\n")
+            end
+          end
+          byebug
         end
       end
     end

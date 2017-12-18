@@ -16,8 +16,8 @@ module TencentCos
       end
   
       # default values
-      self.request_retry ||= 3
-      self.timeout ||= 3
+      self.request_retry ||= 8
+      self.timeout ||= 8
     end
     
     def host(bucket_name = nil, region = nil)
