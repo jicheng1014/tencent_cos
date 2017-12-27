@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'yaml'
 
 module TencentCos
@@ -8,18 +9,18 @@ module TencentCos
 
     def initialize(options = nil?)
       if options.nil?
-        options = YAML.load_file(File.expand_path("tencent_cos.yml"))
+        options = YAML.load_file(File.expand_path('tencent_cos.yml'))
       end
-
+      
       ATTRS.each do |attr|
         send("#{attr}=", options[attr.to_sym])
       end
-  
+
       # default values
       self.request_retry ||= 8
       self.timeout ||= 8
     end
-    
+
     def host(bucket_name = nil, region = nil)
       bucket_name = self.bucket_name if bucket_name.nil?
       region = self.region if region.nil?

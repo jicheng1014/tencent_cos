@@ -66,7 +66,7 @@ module TencentCos
               end
         params = {}
       end
-      val = headers["Content-Type"]
+      val = headers["Content-Type"] 
 
       do_retry do
         request = RestClient::Request.new({
@@ -79,7 +79,7 @@ module TencentCos
 
         headers = request.instance_variable_get("@processed_headers")
 
-        if headers.keys.include?("Content-Type")
+        if headers.keys.include?("Content-Type") && !val.nil?
           
           headers.delete("Content-Type")
           headers.merge!({"Content-Type" => val})
